@@ -31,7 +31,7 @@ jobs:
               env:
                   REPO_NAME: ${{ github.event.repository.name }}
                   BASE_SUFFIX: "/${{ steps.slug.outputs.slug }}"
-              run: npm build
+              run: npm run build
 
             - name: Deploy to gh-pages subfolder
               uses: peaceiris/actions-gh-pages@v4
