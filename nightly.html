@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nightly build info result – Cappa</title>
+  </head>
+  <body>
+    <main class="page-wrapper">
+      <aside class="sidebar">
+        <div id="prlsGroups" class="sidebar__nav group-sections"></div>
+      </aside>
+
+      <section class="main-content cappa-nightly">
+        <h1>Nightly Build Results – <span id="group-title"></span></h1>
+
+        <div class="filter-container">
+          <label for="monthPicker">Monat & Jahr:</label>
+          <button
+            id="compare-version-btn"
+            title="Compare dates"
+            onclick="toggleCompareMode('version')"
+            class="a-button-primary"
+          >
+            👁️ Compare developer version
+          </button>
+        </div>
+
+        <div id="date-tabs" class="tabs" style="display: none"></div>
+
+        <div id="product-view" style="display: none">
+          <h2 id="date-title" class="a-h2"></h2>
+
+          <div class="category-row">
+            <div id="nightly_build_result" class="category-label"></div>
+            <div id="nightly_delivery_result" class="category-label"></div>
+            <div id="delivery2etf_result" class="category-label"></div>
+          </div>
+
+          <div id="product-table"></div>
+        </div>
+
+        <div class="content-footer">
+          <hr class="content-footer__line" />
+          <p class="content-footer__text"></p>
+          <!-- Für die Zukunft -->
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
