@@ -1,3 +1,4 @@
+import prettier from "eslint-config-prettier";
 import { includeIgnoreFile } from "@eslint/compat";
 import js from "@eslint/js";
 import svelte from "eslint-plugin-svelte";
@@ -11,43 +12,36 @@ const gitignorePath = fileURLToPath(new URL("./.gitignore", import.meta.url));
 
 export default defineConfig(
   includeIgnoreFile(gitignorePath),
-
   js.configs.recommended,
   ...ts.configs.recommended,
   ...svelte.configs.recommended,
-
+  prettier,
+  ...svelte.configs.prettier,
   {
     languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
+      globals: { ...globals.browser, ...globals.node }
     },
-    rules: {
-      "no-undef": "off",
-    },
+    rules: { "no-undef": "off" }
   },
-
   {
     files: [
       "**/*.js",
       "**/*.ts",
       "**/*.svelte",
       "**/*.svelte.ts",
-      "**/*.svelte.js",
+      "**/*.svelte.js"
     ],
     languageOptions: {
       parserOptions: {
         projectService: true,
         extraFileExtensions: [".svelte"],
         parser: ts.parser,
-        svelteConfig,
-      },
+        svelteConfig
+      }
     },
     rules: {
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_" },
-      ],
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
       "@typescript-eslint/no-explicit-any": "error",
-
       "array-callback-return": "error",
       "no-async-promise-executor": "error",
       "no-await-in-loop": "warn",
@@ -70,7 +64,7 @@ export default defineConfig(
       "require-await": "warn",
       "prefer-const": "error",
       "prefer-regex-literals": "error",
-      "prefer-spread": "error",
-    },
+      "prefer-spread": "error"
+    }
   }
 );
