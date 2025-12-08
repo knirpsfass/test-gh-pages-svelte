@@ -1,36 +1,36 @@
-import adapter from "@sveltejs/adapter-static";
-import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
+import adapter from '@sveltejs/adapter-static';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const dev = process.argv.includes("dev");
+const dev = process.argv.includes('dev');
 
-const rawRepo = process.env.REPO_NAME ?? "";
-const rawSuffix = process.env.BASE_SUFFIX ?? "";
+const rawRepo = process.env.REPO_NAME ?? '';
+const rawSuffix = process.env.BASE_SUFFIX ?? '';
 
 function joinBase(...parts) {
   const cleaned = parts
     .map((p) => p.trim())
     .filter(Boolean)
-    .map((p) => p.replace(/^\/+|\/+$/g, ""));
+    .map((p) => p.replace(/^\/+|\/+$/g, ''));
 
-  if (cleaned.length === 0) return "";
+  if (cleaned.length === 0) return '';
 
-  return "/" + cleaned.join("/");
+  return '/' + cleaned.join('/');
 }
 
-const base = dev ? "" : joinBase(rawRepo, rawSuffix);
+const base = dev ? '' : joinBase(rawRepo, rawSuffix);
 
 const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter({
-      fallback: "404.html",
-      pages: "build",
-      assets: "build",
+      fallback: '404.html',
+      pages: 'build',
+      assets: 'build'
     }),
     paths: {
-      base,
-    },
-  },
+      base
+    }
+  }
 };
 
 export default config;

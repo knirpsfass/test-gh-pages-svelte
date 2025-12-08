@@ -11,21 +11,13 @@ export class Game {
       this.answers = data.answers;
     } else {
       this.answer = this.randomWord();
-      this.guesses = Array(6).fill("");
+      this.guesses = Array(6).fill('');
       this.answers = [];
     }
   }
 
   randomWord() {
-    const WORDS = [
-      "apple",
-      "chair",
-      "sugar",
-      "spoon",
-      "table",
-      "drink",
-      "house",
-    ];
+    const WORDS = ['apple', 'chair', 'sugar', 'spoon', 'table', 'drink', 'house'];
     return WORDS[Math.floor(Math.random() * WORDS.length)];
   }
 
@@ -33,14 +25,14 @@ export class Game {
     return JSON.stringify({
       answer: this.answer,
       guesses: this.guesses,
-      answers: this.answers,
+      answers: this.answers
     });
   }
 
   updateKey(key: string) {
     const i = this.answers.length;
 
-    if (key === "backspace") {
+    if (key === 'backspace') {
       this.guesses[i] = this.guesses[i].slice(0, -1);
     } else if (this.guesses[i].length < 5) {
       this.guesses[i] += key;
@@ -57,21 +49,21 @@ export class Game {
 
     for (let idx = 0; idx < 5; idx++) {
       if (guess[idx] === this.answer[idx]) {
-        answerRow.push("x");
+        answerRow.push('x');
       } else if (this.answer.includes(guess[idx])) {
-        answerRow.push("c");
+        answerRow.push('c');
       } else {
-        answerRow.push("_");
+        answerRow.push('_');
       }
     }
 
-    this.answers.push(answerRow.join(""));
+    this.answers.push(answerRow.join(''));
 
     return true;
   }
 
   restart() {
-    localStorage.removeItem("sverdle");
+    localStorage.removeItem('sverdle');
     return new Game(null);
   }
 }
