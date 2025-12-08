@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { Game } from "./game";
+  import { onMount } from 'svelte';
+  import { Game } from './game';
 
   export let data;
   let game: Game;
 
-  let currentGuess = "";
+  let currentGuess = '';
   let badGuess = false;
   let won = false;
 
@@ -16,8 +16,8 @@
 
   function updateDerived() {
     const i = game.answers.length;
-    currentGuess = game.guesses[i] ?? "";
-    won = game.answers.at(-1) === "xxxxx";
+    currentGuess = game.guesses[i] ?? '';
+    won = game.answers.at(-1) === 'xxxxx';
   }
 
   function pressKey(key: string) {
@@ -48,12 +48,12 @@
   }
 
   function persist() {
-    localStorage.setItem("sverdle", game.toString());
+    localStorage.setItem('sverdle', game.toString());
   }
 
   function keydown(e: KeyboardEvent) {
-    if (e.key === "Enter") submit();
-    if (e.key === "Backspace") pressKey("backspace");
+    if (e.key === 'Enter') submit();
+    if (e.key === 'Backspace') pressKey('backspace');
 
     if (/^[a-z]$/.test(e.key)) pressKey(e.key);
   }
@@ -68,7 +68,7 @@
     <div class="row">
       {#each Array.from({ length: 5 }) as _, col}
         {@const guess = game.guesses[row]}
-        {@const val = guess?.[col] ?? ""}
+        {@const val = guess?.[col] ?? ''}
         {@const answer = game.answers[row]?.[col]}
 
         <div class="cell {answer}">
@@ -89,16 +89,16 @@
   {:else}
     <button on:click={submit}>Enter</button>
     <div class="keyboard">
-      {#each ["qwertyuiop", "asdfghjkl", "zxcvbnm"] as row}
+      {#each ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as row}
         <div class="row">
-          {#each row.split("") as letter}
+          {#each row.split('') as letter}
             <button on:click={() => pressKey(letter)}>
               {letter}
             </button>
           {/each}
         </div>
       {/each}
-      <button on:click={() => pressKey("backspace")}>Back</button>
+      <button on:click={() => pressKey('backspace')}>Back</button>
     </div>
   {/if}
 </div>
@@ -138,4 +138,3 @@
     margin-top: 1rem;
   }
 </style>
-

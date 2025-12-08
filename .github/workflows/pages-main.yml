@@ -23,7 +23,7 @@ jobs:
       - name: Build SvelteKit (main)
         env:
           REPO_NAME: ${{ github.event.repository.name }}
-          BASE_SUFFIX: ""
+          BASE_SUFFIX: ''
         run: npm run build
 
       - name: Deploy to gh-pages (root)
