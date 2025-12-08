@@ -11,21 +11,28 @@ const gitignorePath = fileURLToPath(new URL("./.gitignore", import.meta.url));
 
 export default defineConfig(
   includeIgnoreFile(gitignorePath),
+
   js.configs.recommended,
   ...ts.configs.recommended,
   ...svelte.configs.recommended,
+
   {
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
     },
     rules: {
-      // typescript-eslint strongly recommend that you do not use the no-undef lint rule on TypeScript projects.
-      // see: https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
       "no-undef": "off",
     },
   },
+
   {
-    files: ["**/*.svelte", "**/*.svelte.ts", "**/*.svelte.js"],
+    files: [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.svelte",
+      "**/*.svelte.ts",
+      "**/*.svelte.js",
+    ],
     languageOptions: {
       parserOptions: {
         projectService: true,
@@ -33,6 +40,37 @@ export default defineConfig(
         parser: ts.parser,
         svelteConfig,
       },
+    },
+    rules: {
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" },
+      ],
+      "@typescript-eslint/no-explicit-any": "error",
+
+      "array-callback-return": "error",
+      "no-async-promise-executor": "error",
+      "no-await-in-loop": "warn",
+      "no-compare-neg-zero": "warn",
+      "no-fallthrough": "error",
+      "arrow-body-style": "error",
+      "arrow-spacing": "error",
+      "consistent-return": "error",
+      "max-depth": "error",
+      "no-loop-func": "error",
+      "no-new-object": "error",
+      "no-new-wrappers": "error",
+      "no-return-assign": "error",
+      "no-return-await": "error",
+      "no-useless-escape": "error",
+      "no-useless-return": "error",
+      "no-void": "error",
+      "no-var": "error",
+      "no-undef-init": "warn",
+      "require-await": "warn",
+      "prefer-const": "error",
+      "prefer-regex-literals": "error",
+      "prefer-spread": "error",
     },
   }
 );
