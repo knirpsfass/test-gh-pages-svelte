@@ -18,7 +18,7 @@
       </picture>
     </span>
 
-    to your new<br />SvelteKit app
+    feautre/abc
   </h1>
 
   <h2>
