@@ -10,7 +10,7 @@
   let won = false;
 
   onMount(() => {
-    game = data.game;
+    game = data?.game;
     updateDerived();
   });
 
@@ -138,3 +138,4 @@
     margin-top: 1rem;
   }
 </style>
+
